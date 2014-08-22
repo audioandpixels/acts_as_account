@@ -122,7 +122,7 @@ Given /I transfer (\d+) € from (\w+)'s account to (\w+)'s account referencing 
 end
 
 Then /^all postings reference (\w+) with (\w+) (\w+)$/ do |reference_class, name, value|
-  reference = reference_class.constantize.where("#{name} = #{value}").first
+  reference = reference_class.constantize.where("#{name} = '#{value}'").first
   Posting.all.each do |posting|
     reference.should eq posting.reference
   end
@@ -141,8 +141,8 @@ Then /^all postings have (\S+) (\S+) as the booking time$/ do |booking_date, boo
 end
 
 Then /^(\w+) with (\w+) (\w+) references all postings$/ do |reference_class, name, value|
-  reference = reference_class.constantize.where("#{name} = #{value}").first
-  Posting.all.to_a.should eq reference.postings
+  reference = reference_class.constantize.where("#{name} = '#{value}'").first
+  Posting.all.order('id').to_a.should eq reference.postings.order('id')
 end
 
 Then /^the order of the postings is correct$/ do
@@ -167,3 +167,4 @@ end
 When /^I call 'account' on both it should be possible$/ do
   [@user1, @user2].each { |user| user.account }
 end
+

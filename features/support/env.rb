@@ -3,7 +3,7 @@ ActiveRecord::Base.establish_connection(YAML.load_file(File.dirname(__FILE__) + 
 
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
-DatabaseCleaner.strategy = :transaction
+DatabaseCleaner.strategy = :truncation
 
 Dir[File.dirname(__FILE__) + '/../step_definitions/*.rb'].each { |file| require file }
 

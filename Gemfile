@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-group :development do
+group :development, :test do
   gem 'rspec'
   gem 'jeweler'
   gem 'cucumber'

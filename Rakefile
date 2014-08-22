@@ -30,7 +30,6 @@ namespace :features do
   task :create_database do
     require 'rubygems'
     require 'active_record'
-    binding.pry
     access_data = YAML.load_file(File.dirname(__FILE__) + '/db/database.yml')['acts_as_account']
     conn = ActiveRecord::Base.establish_connection(access_data.merge('database' => 'postgres')).connection
     conn.execute('DROP DATABASE IF EXISTS acts_as_account')
