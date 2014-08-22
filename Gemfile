@@ -4,7 +4,8 @@ group :development do
   gem 'rspec'
   gem 'jeweler'
   gem 'cucumber'
-  gem 'mysql'
+  gem 'pg'
+  gem 'pry'
 end
 
 group :default do
